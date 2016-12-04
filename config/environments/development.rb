@@ -28,9 +28,6 @@ Rails.application.configure do
 
     config.cache_store = :null_store
   end
-
-  config.action_mailer.smtp_settings = Technology.of_type('dev_smtp_settings').first.try(:obtain_data)
-
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
