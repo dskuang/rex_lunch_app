@@ -1,18 +1,16 @@
 class UserMailer < ApplicationMailer
   attr_reader :restaurant, :time
-  SF_EMAIL = 'sf@referralexchange.com'.freeze
+  SF_EMAIL = Email.of_group('global').addresses
 
-  INDIVIDUAL_EMAILS = %w(
-  ).freeze
+  INDIVIDUAL_EMAILS = Email.of_group('individual').addresses
 
-  TEST_EMAILS = %w(
-  ).freeze
+  TEST_EMAILS = Email.of_group('test').addresses
 
   def send_lunch_email(restaurant, time)
     @time = time
     @restaurant = restaurant
     mail(
-      to: INDIVIDUAL_EMAILS,
+      to: TEST_EMAILS,
       subject: subject,
       template_name: 'send_lunch_email'
     )
