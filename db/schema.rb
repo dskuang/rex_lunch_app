@@ -69,13 +69,6 @@ ActiveRecord::Schema.define(version: 20161204014812) do
     t.string   "name"
   end
 
-  create_table "technologies", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "name"
-    t.json     "auth_data"
-  end
-
   create_table "users", force: :cascade do |t|
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
