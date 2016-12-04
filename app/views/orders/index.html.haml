@@ -1,0 +1,23 @@
+#wrapper
+  #main
+    .inner
+      %table
+        %thead
+          %tr
+            %td
+              Restaurant
+            %td
+              Serviced
+            %td
+              Amount
+        %tbody
+          - @orders.each do |order|
+            %tr
+              %td
+                = order.restaurant.name
+              %td
+                = order.serviced_at.strftime('%_m/%-d/%y')
+              %td
+                = number_to_currency(order.purchased_amount, precision: 2)
+        .paginate{style: 'width: 100%; text-align: center'}
+          = will_paginate @orders, renderer: BootstrapPagination::Rails, class: 'text-center'

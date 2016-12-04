@@ -1,0 +1,25 @@
+development:
+  adapter: postgresql
+  encoding: utf8
+  pool: 5
+  database: lunch_dev
+  username:
+  password:
+  hostname: localhost
+
+test: &TEST
+  adapter: postgresql
+  encoding: utf8
+  pool: 5
+  username:
+  password:
+
+production:
+  adapter: postgresql
+  encoding: utf8
+  pool: 5
+  username:
+  password:
+
+cucumber:
+  <<: *TEST

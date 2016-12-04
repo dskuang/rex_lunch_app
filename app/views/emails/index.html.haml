@@ -1,0 +1,40 @@
+#wrapper
+  #main
+    .inner
+      .select-restaurant-preview
+        %h4.inline
+          Select a Restaurant:
+        .inline-block
+          = form_tag '/emails/send_email', method: 'POST', remote: true, id: 'select-form'  do
+            .select-options.inline-block.relative{style: 'margin-right: 8px'}
+              %i.fa.fa-angle-down.absolute
+              = select_tag 'id',
+                options_for_select(@restaurants),
+                id: 'restaurant-selection',
+                prompt: '-- Select --'
+            .inline-block
+              = text_field_tag 'time', nil, { data_provide: 'datepicker', class: 'datepicker', style: 'width: 100px' }
+            .send-email-button.inline-block
+              = submit_tag 'Send Email'
+      %br
+      %br
+      %iframe.preview{style: 'width: 1000px; height: 2500px;'}
+
+  :javascript
+    $(document).ready(function(){
+      $('.datepicker').datepicker();
+    });
+    $('#select-form #restaurant-selection, #time').change(function(e) {
+      var restaurant = $('#restaurant-selection').val()
+      var time = $('#time').val()
+      if (restaurant) {
+        var src = '/emails/preview?id=' + restaurant + '&time=' + time
+        $('iframe.preview').attr('src', src);
+      }
+    })
+    $('#select-form').submit(function(e) {
+      if (!$('#select-form #restaurant-selection').val()) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+      }
+    })

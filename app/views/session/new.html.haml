@@ -1,0 +1,12 @@
+#wrapper
+  #main
+    .inner
+      .inner-form{style: 'width: 50%; margin: 0 auto'}
+        = form_tag session_create_url, method: 'post' do
+          = auth_token_input
+          = label_tag 'Username'
+          = text_field_tag 'user[username]'
+          = label_tag 'Password'
+          = password_field 'user', 'password'
+          %br
+          = submit_tag 'Sign In'

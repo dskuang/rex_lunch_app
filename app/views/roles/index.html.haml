@@ -1,0 +1,29 @@
+#wrapper
+  #main
+    .inner
+      %h2
+        Roles
+      - @users.each_with_index do |user, idx|
+        .users
+          .username.inline-block
+            = user.username
+          .role-toggle.inline-block
+            = radio_button_tag "admin#{idx}", 'admin', user.has_role?('admin'), data: {id: user.id}
+            = label_tag 'Admin', 'Admin', class: 'inline-block admin-label'
+            = radio_button_tag "admin#{idx}", 'guest', !user.has_role?('admin'), data: {id: user.id}
+            = label_tag 'Guest', 'Guest', class: 'inline-block'
+
+:javascript
+  $('.role-toggle input').change(function(e) {
+    options = {
+      user_id: $(e.currentTarget).data('id'),
+      role_setting: $(e.currentTarget).val()
+    };
+    $.ajax({
+      url: '/roles/change',
+      data: options,
+      method: 'POST',
+      dataType: 'json'
+    }).done(function() {
+    });
+  })

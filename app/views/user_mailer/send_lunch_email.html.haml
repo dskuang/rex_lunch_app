@@ -1,0 +1,31 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    .email-container{style: 'width: 100%', type: 'text/css'}
+      .banner{style: 'position: relative; width: 800px', type: 'text/css'}
+        .info{style: 'color: #585858; text-align: center; text-align: center; font-family: arial', type: 'text/css'}
+          %h1.name{style: 'margin: 0; font-size: 25px; color: #061937', type: 'text/css'}
+            = @restaurant.name
+          %i.address{style: '#061937'}
+            = @restaurant.address_line_1
+            %br
+            = @restaurant.address_line_2
+          %br
+          %span{style: 'color: #3A6991'}
+            = @time || Date.upcoming_lunch_day.strftime('%A, %B %e')
+        %br
+        .banner-img{style: 'height: 225px'}
+          = image_tag @restaurant.banner_link, style: 'width: 100%; height: 100%', type: 'text/css'
+      %br
+      .food-items.display-inline-flex-start{style: 'width: 800px;', type: 'text/css'}
+        - @restaurant.available_food_items.each_with_index do |item, idx|
+          - style = idx%4 == 0 ? 'margin-right: 5px;' : idx%4 == 3 ? 'margin-left: 5px;' : 'margin-right: 5px; margin-left: 5px;'
+          - style += ' width: 189px; margin-bottom: 15px; display: inline-block'
+          .food-item.text-center{style: style, type: 'text/css'}
+            = image_tag item.photo_link, style: 'width: 100%; height: 100%;', type: 'text/css'
+            %h5{style: 'text-align: center; color: #000040', type: 'text/css'}
+              = precede("#{item.parsed_name}") do
+                %span{style: 'color: green', type: 'text/css'}
+                  = ('(V)') if item.vegetarian?

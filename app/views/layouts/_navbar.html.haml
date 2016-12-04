@@ -1,0 +1,42 @@
+#wrapper
+  / Header
+  %header#header
+    .inner
+      / Logo
+      %a.logo{:href => "index.html"}
+        %span.symbol
+          = image_tag "temp_imgs/logo.svg"
+        %span.title ReferralExchange
+      / Nav
+      %nav
+        %ul
+          %li
+            = link_to 'Menu', '#menu'
+  / Menu
+  %nav#menu{style: ''}
+    %h2 Rex Eats
+    %ul
+      %li
+        = link_to 'Home', '/restaurants/index'
+      - if current_user.try(:has_role?, 'admin')
+        %li
+          = link_to 'Order History', '/orders/index'
+        %li
+          = link_to 'Emails', '/emails/index'
+        %li
+          = link_to 'Admin', '/roles/index'
+    .bottom-container.text-center
+      - if signed_in?
+        .bottom-inner.left.display-flex-vertical-center
+          Hi #{current_user.username}
+        .bottom-inner.left.display-flex-vertical-center
+          = button_to 'Log Out', session_destroy_url, method: 'post', class: 'inner-button'
+      - else
+        .display-flex-vertical-center.max-height
+          = button_to 'Sign In', session_new_path, method: 'post', class: 'inner-button'
+
+  :javascript
+    $('#new_restaurant_toggle').click(function(e) {
+      e.preventDefault();
+      $('#new_restaurant_toggle').trigger('showForm');
+    });
