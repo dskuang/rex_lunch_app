@@ -5,7 +5,7 @@ class UserMailer < ApplicationMailer
     @time = time
     @restaurant = restaurant
     mail(
-      to: test_emails,
+      to: individual_emails,
       subject: subject,
       template_name: 'send_lunch_email'
     )
