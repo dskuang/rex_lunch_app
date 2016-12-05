@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_signed_in!
-    redirect_to new_session_url unless signed_in?
+    redirect_to session_new_url unless signed_in?
   end
 
   def process_request
@@ -36,9 +36,9 @@ class ApplicationController < ActionController::Base
 
   def rescue_exception
     yield
-  rescue ActiveRecord::RecordNotFound => e
+  rescue ActiveRecord::RecordNotFound
     redirect_to '/404'
-  rescue StandardError => e
-    render file: 'public/500.html', status: :internal_server_error, layout: false
+  rescue
+    redirect_to '/500'
   end
 end
