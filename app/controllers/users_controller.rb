@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  skip_before_filter :require_signed_in!
+  
   def index
   end
 
