@@ -18,15 +18,17 @@ gem 'coffee-rails', '~> 4.2'
 gem 'will_paginate-bootstrap'
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '4.2.1'
 
 # gem 'sendgrid'
 
-gem 'ruby_http_client'
+gem 'ruby_http_client', '3.0.0'
 
 gem 'textacular', '4.0.1'
 
-gem 'cloudinary'
+gem 'cloudinary', '1.2.4'
+
+gem 'sidekiq', '5.1.1'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
@@ -50,7 +52,7 @@ gem 'haml', '4.0.7'
 
 # gem 'mailgun_rails'
 
-gem 'bootstrap-datepicker-rails'
+gem 'bootstrap-datepicker-rails', '1.6.4.1'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -85,8 +87,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'better_errors'
   gem 'binding_of_caller'
-  # Use sqlite3 as the database for Active Record
-  gem 'sqlite3'
+  gem 'pg'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

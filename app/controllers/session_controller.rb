@@ -1,5 +1,5 @@
 class SessionController < ApplicationController
-  skip_before_filter :require_signed_in!
+  skip_before_action :require_signed_in!
 
   def new
   end

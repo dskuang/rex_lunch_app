@@ -38,7 +38,5 @@ class ApplicationController < ActionController::Base
     yield
   rescue ActiveRecord::RecordNotFound
     redirect_to '/404'
-  rescue
-    redirect_to '/500'
   end
 end
