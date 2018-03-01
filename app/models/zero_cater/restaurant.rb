@@ -28,7 +28,7 @@ module ZeroCater
     end
 
     def monday
-      Time.now.beginning_of_week
+      Time.current.beginning_of_week
     end
 
     def wednesday
@@ -45,7 +45,7 @@ module ZeroCater
 
     def current_restaurants
       restaurants = restaurant_data.select do |restaurant|
-        Time.at(restaurant['time']) > Time.now
+        Time.at(restaurant['time']) > Time.current
       end
       restaurants.map { |restaurant| OpenStruct.new(restaurant) }.sort_by(&:time)
     end
