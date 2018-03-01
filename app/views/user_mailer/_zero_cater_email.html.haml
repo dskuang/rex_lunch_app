@@ -13,7 +13,7 @@
         %br
       .food-items.display-inline-flex-start{style: 'width: 1100px;', type: 'text/css'}
         - @dishes.each_with_index do |item, idx|
-          - style = 'vertical-align: top; margin-right: 20px; border-radius: 5px; background: #E4DDD9; width: 250px; margin-bottom: 25px; display: inline-block; font-size: 13px;'
+          - style = 'vertical-align: top; margin-right: 20px; border-radius: 5px; background: #E4DDD9; width: 240px; margin-bottom: 25px; display: inline-block; font-size: 13px;'
           .food-item.text-center{style: style, type: 'text/css'}
             .details{style: 'padding: 15px; height: 100%; box-sizing: border-box'}
               %h5{style: 'text-align: left; color: #000040; margin: 0 0 10px 0', type: 'text/css'}
@@ -22,7 +22,7 @@
                 - else
                   = "#{item['name']}"
               %div{style: 'border-bottom: 1px solid black; margin-bottom: 10px'}
-              %div{style: 'text-align: left; position: absolute;'}
+              %div{style: 'text-align: left; position: absolute; color: #888080; font-size: 12px'}
                 - item['necessary_labels'].sort.each do |label|
                   %div
                     = label

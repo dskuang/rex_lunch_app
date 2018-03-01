@@ -11,7 +11,11 @@ module ZeroCater
       data['items'].each do |item|
         item['necessary_labels'] = []
         item['labels'].each do |label, value_hash|
-          item['necessary_labels'] << label if value_hash['value']
+          if label == 'gluten' && !value_hash['label']
+            item['necessary_labels'] << 'gluten free'
+          elsif value_hash['value']
+            item['necessary_labels'] << label
+          end
         end
       end
     end

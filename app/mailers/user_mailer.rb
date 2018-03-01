@@ -15,7 +15,7 @@ class UserMailer < ApplicationMailer
     @restaurant = ZeroCater::Restaurant.new.upcoming_restaurant
     @dishes = ZeroCater::Dishes.new(restaurant.url).parse_data
     mail(
-      to: test_emails,
+      to: to_email,
       subject: subject,
       template_name: 'zero_cater_email'
     )
@@ -27,6 +27,14 @@ class UserMailer < ApplicationMailer
     "#{restaurant['name'].titleize} - #{Time.at(restaurant['time']).strftime('%A, %B %e')}"
   end
 
+  def to_email
+    if Rails.env.development?
+      test_emails
+    else
+      sf_email
+    end
+  end
+
   def sf_email
     Email.of_group('global').addresses
   end
@@ -36,6 +44,6 @@ class UserMailer < ApplicationMailer
   end
 
   def test_emails
-    "dominic@referralexchange.com"
+    Email.of_group('test').addresses
   end
 end

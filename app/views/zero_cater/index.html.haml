@@ -3,7 +3,7 @@
     .inner
       .select-restaurant-preview
         .inline-block
-          = form_tag '/emails/send_email', method: 'POST', remote: true, id: 'select-form'  do
+          = form_tag '/emails/send_zero_cater_email', method: 'POST', remote: true do
             = submit_tag 'Send Email'
       %br
       %br
