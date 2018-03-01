@@ -16,6 +16,11 @@ class EmailsController < ApplicationController
     render json: 'ok'
   end
 
+  def send_zero_cater_email
+    @restaurant = ZeroCater::Restaurant.new.upcoming_restaurant
+    @dishes = ZeroCater::Dishes.new(@restaurant.url).parse_data
+  end
+
   private
 
   def manual_time

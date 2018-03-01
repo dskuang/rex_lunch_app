@@ -11,10 +11,20 @@ class UserMailer < ApplicationMailer
     )
   end
 
+  def send_zero_cater_email
+    @restaurant = ZeroCater::Restaurant.new.upcoming_restaurant
+    @dishes = ZeroCater::Dishes.new(restaurant.url).parse_data
+    mail(
+      to: test_emails,
+      subject: subject,
+      template_name: 'zero_cater_email'
+    )
+  end
+
   private
 
   def subject
-    "#{restaurant.name.titleize} - #{time || Date.upcoming_lunch_day.strftime('%A, %B %e')}"
+    "#{restaurant['name'].titleize} - #{Time.at(restaurant['time']).strftime('%A, %B %e')}"
   end
 
   def sf_email
@@ -26,6 +36,6 @@ class UserMailer < ApplicationMailer
   end
 
   def test_emails
-    Email.of_group('test').addresses
+    "dominic@referralexchange.com"
   end
 end

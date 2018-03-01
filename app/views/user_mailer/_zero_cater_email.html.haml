@@ -1,0 +1,28 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    .email-container{style: 'width: 100%', type: 'text/css'}
+      .banner{style: 'position: relative; width: 1100px', type: 'text/css'}
+        .info{style: 'color: #585858; text-align: left; font-family: arial; width: 100%', type: 'text/css'}
+          .name{style: 'font-size: 25px; color: #061937;  margin-bottom: -5px', type: 'text/css'}
+            = @restaurant['vendor_name']
+          .description{style: 'font-size: 12px;'}
+            = @restaurant['vendor_description']
+        %br
+      .food-items.display-inline-flex-start{style: 'width: 1100px;', type: 'text/css'}
+        - @dishes.each_with_index do |item, idx|
+          - style = 'box-sizing: border; margin-right: 20px; border-radius: 5px; background: #ccc; width: 225px; margin-bottom: 25px; display: inline-block; font-size: 13px; height: 150px'
+          .food-item.text-center{style: style, type: 'text/css'}
+            .details{style: 'padding: 15px; height: 100%; box-sizing: border-box'}
+              %h4{style: 'text-align: left; color: #000040; margin: 0 0 10px 0', type: 'text/css'}
+                - if item['name'].length > 25
+                  = "#{item['name'][0..25]}.."
+                - else
+                  = "#{item['name']}"
+              %div{style: 'border-bottom: 1px solid black; margin-bottom: 10px'}
+              %div{style: 'text-align: left; position: absolute;'}
+                - item['necessary_labels'].sort.each do |label|
+                  %div
+                    = label

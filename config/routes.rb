@@ -28,8 +28,10 @@ Rails.application.routes.draw do
   get 'emails/index', to: 'emails#index'
   get 'emails/preview', to: 'emails#preview'
   post 'emails/send_email', to: 'emails#send_email'
+  post 'emails/send_zero_cater_email', to: 'emails#send_zero_cater_email'
+
+  get 'zero_cater/index', to: 'zero_cater#index'
 
   get 'roles/index', to: 'roles#index'
   post 'roles/change', to: 'roles#change'
-
 end

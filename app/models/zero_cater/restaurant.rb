@@ -1,14 +1,14 @@
 module ZeroCater
   class Restaurant
-    attr_reader :url, :data
+    attr_reader :url, :data, :dishes
 
     def initialize
-      @url = 
+      token = Technology.of_type('zero_cater').last.obtain_data[:token]
+      @url = "https://api.zerocater.com/v3/companies/#{token}/meals"
       @data = fetch
-      @dishes = @data.url
     end
 
-    def next
+    def upcoming_restaurant
       current_restaurants.each do |restaurant|
         catering_days.reverse.each do |date|
           restaurant_date = Time.at(restaurant.time).to_date
