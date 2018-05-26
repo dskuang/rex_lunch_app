@@ -24,7 +24,7 @@ module ZeroCater
     end
 
     def catering_days
-      [monday.to_date, wednesday.to_date, friday.to_date, next_monday.to_date]
+      [monday.to_date, friday.to_date, next_monday.to_date]
     end
 
     def monday
